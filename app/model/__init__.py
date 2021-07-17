@@ -6,4 +6,4 @@ class Member:
         self.name = "{} {}".format(first_name, last_name)
 
     def __repr__(self):
-        return "{} - {}".format(self.name, self.birth_date_short)
+        return "{}".format(self.name)
