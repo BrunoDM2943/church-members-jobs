@@ -26,4 +26,27 @@ def find_last_birthdays(start_date, end_date):
         FilterExpression=Attr("birthDateShort").between(fmt_start_date, fmt_end_date),
         ProjectionExpression="id, firstName, lastName, birthDateShort"
     )
-    return [Member(**item) for item in response.get('Items', [])]
+    return [member_from_item(item) for item in response.get('Items', [])]
+
+
+def member_from_item(item):
+    return Member(
+        _id=item['id'],
+        first_name=item['firstName'],
+        last_name=item['lastName'],
+        birth_date_short=item.get('birthDateShort', None),
+        marriage_date_short=item.get('marriageDateShort', None)
+    )
+
+
+def find_last_marriages(start_date, end_date):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('member')
+    fmt_start_date = convert_date(start_date)
+    fmt_end_date = convert_date(end_date)
+    logging.info("Scanning for marriages of the week from %s to %s", fmt_start_date, fmt_end_date)
+    response = table.scan(
+        FilterExpression=Attr("marriageDateShort").between(fmt_start_date, fmt_end_date),
+        ProjectionExpression="id, firstName, lastName, marriageDateShort"
+    )
+    return [member_from_item(item) for item in response.get('Items', [])]

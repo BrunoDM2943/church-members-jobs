@@ -1,13 +1,16 @@
 import logging
 
-from app.service.reports import birthdays_report
+from app.service.reports import birthdays_report, marriage_report
 
 logging.basicConfig(level=logging.INFO)
 
-def lambda_handler(event, context):
-    print(event)
-    birthdays_report()
-    return "Hello"
 
-if __name__ == '__main__':
-    birthdays_report()
+def lambda_handler(event, context):
+    job = event['details']['name']
+    logging.info('Received job: %s', job)
+    jobs = {
+        'birth': birthdays_report,
+        'marriage': marriage_report
+    }
+    jobs['job']()
+    logging.info('Job completed')
