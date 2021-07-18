@@ -6,7 +6,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 def lambda_handler(event, context):
-    job = event['detail']['name']
+    job = event['name']
     logging.info('Received job: %s', job)
     jobs = {
         'birth': birthdays_report,
