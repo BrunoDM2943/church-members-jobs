@@ -1,5 +1,4 @@
 import datetime
-import unittest
 
 import boto3
 from moto import mock_dynamodb2
