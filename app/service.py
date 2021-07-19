@@ -1,8 +1,8 @@
 import datetime
 import os
 
-from app.repository.dynamodb import find_last_birthdays, find_last_marriages
-from app.service.notification import send_notification, send_mobile_notification
+from app.repository import find_last_birthdays, find_last_marriages
+from app.notification import send_notification, send_mobile_notification
 
 
 def birthdays_report():

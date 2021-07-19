@@ -17,7 +17,7 @@ def convert_date(date):
 
 
 def find_last_birthdays(start_date, end_date):
-    dynamodb = boto3.resource('dynamodb')
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
     table = dynamodb.Table('member')
     fmt_start_date = convert_date(start_date)
     fmt_end_date = convert_date(end_date)
@@ -40,7 +40,7 @@ def member_from_item(item):
 
 
 def find_last_marriages(start_date, end_date):
-    dynamodb = boto3.resource('dynamodb')
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
     table = dynamodb.Table('member')
     fmt_start_date = convert_date(start_date)
     fmt_end_date = convert_date(end_date)
