@@ -1,4 +1,4 @@
-from app.service.reports import birthdays_report, marriage_report, daily_birth_report
+from app.service import birthdays_report, marriage_report, daily_birth_report
 
 
 def get_job(job_name):

@@ -33,11 +33,11 @@ def daily_birth_report():
         send_mobile_notification(text, phone)
 
 
-def build_sms(title, members, format_fun):
+def build_sms(title, day, members, format_fun):
     return """
+    {} - {}
     {}
-    {}
-    """.format(title, ''.join([format_fun(member) for member in members]))
+    """.format(title, day, ''.join([format_fun(member) for member in members]))
 
 
 def build_email(title, description, members, format_fun):
