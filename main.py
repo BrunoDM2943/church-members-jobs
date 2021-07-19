@@ -1,6 +1,6 @@
 import logging
 
-from app.service.reports import birthdays_report, marriage_report
+from app.service import birthdays_report, marriage_report
 
 logging.basicConfig(level=logging.INFO)
 
