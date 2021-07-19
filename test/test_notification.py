@@ -8,7 +8,7 @@ from app.notification import send_notification
 
 @mock_sns
 def test_send_notification():
-    sns = boto3.resource('sns')
+    sns = boto3.resource('sns', region_name="us_east_1")
     topic = sns.create_topic(Name='test')
     with patch('app.notification.getenv') as patched_getenv:
         patched_getenv.return_value = topic.arn

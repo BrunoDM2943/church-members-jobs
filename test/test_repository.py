@@ -7,7 +7,7 @@ from app.repository import convert_date, find_last_birthdays, find_last_marriage
 
 
 def build_mock_dynamodb():
-    dynamodb = boto3.resource("dynamodb")
+    dynamodb = boto3.resource("dynamodb",  region_name="us_east_1")
     dynamodb.create_table(
         TableName='member',
         KeySchema=[
