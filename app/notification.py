@@ -10,3 +10,13 @@ def send_notification(text):
     logging.info("Send notification to topic")
     topic.publish(Message=text)
     logging.info("Notification sent!")
+
+
+def send_mobile_notification(sms, phone):
+    sns = boto3.client('sns')
+    logging.info("Send sms")
+    sns.publish(
+        Message=sms,
+        PhoneNumber=phone
+    )
+    logging.info("SMS sent!")
